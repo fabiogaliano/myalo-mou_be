@@ -9,10 +9,12 @@
     "outDir": "./dist",
     "pretty": true,
     "allowJs": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "baseUrl": ".",
+    "paths": { "@/*": ["./src/*"] }
   },
-  "include": ["./src/**/*"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "include": ["./src/**/*", "./**/*.ts"],
   "exclude": ["node_modules", "tests"]
 }

@@ -32,4 +32,10 @@ export default {
   api: {
     prefix: '/api',
   },
+
+  /**
+   *  Azure
+   */
+  azureEndpoint: process.env.AZURE_ENDPOINT || '',
+  azureSubscriptionKey: process.env.AZURE_SUBSCRIPTION_KEY || '',
 };
