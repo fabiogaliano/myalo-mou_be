@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import hello from './routes/hello';
+import users from './routes/users';
 
 // guaranteed to get dependencies
 export default () => {
   const app = Router();
-  hello(app);
+  users(app);
   return app;
 };

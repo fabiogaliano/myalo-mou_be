@@ -1,4 +1,4 @@
-import { imageClassierInstance } from '@/utils/image-classification';
+import { imageClassierInstance } from '@/helpers/image-classification';
 import { Router, Request, Response } from 'express';
 
 const route = Router();

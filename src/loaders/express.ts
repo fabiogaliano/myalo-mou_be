@@ -2,7 +2,7 @@ import { Request, Response, NextFunction, Application, json } from 'express';
 import cors from 'cors';
 import routes from '@/api';
 import config from '@/config';
-import { CustomError } from '@/utils/errors';
+import { CustomError } from '@/helpers/errors';
 
 export default ({ app }: { app: Application }) => {
   // Useful if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
