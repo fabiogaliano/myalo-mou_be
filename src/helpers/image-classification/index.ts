@@ -9,10 +9,10 @@ import getPixels from 'get-pixels';
 import config from '@/config';
 
 class ImageClassifier {
-  endpoint: string;
-  subscriptionKey: string;
-  credentials: CognitiveServicesCredentials;
-  client: ComputerVisionClient;
+  private endpoint: string;
+  private subscriptionKey: string;
+  private credentials: CognitiveServicesCredentials;
+  private client: ComputerVisionClient;
 
   constructor(azureEndpoint: string, azureSubscriptionKey: string) {
     if (azureEndpoint === '' || azureSubscriptionKey === '') {

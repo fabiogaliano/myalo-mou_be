@@ -12,6 +12,11 @@ interface IColor {
   intensity: number;
 }
 
+interface BulletNote {
+  text: string;
+}
+
+
 interface IImage extends Document {
   _id: Types.ObjectId;
   userId: Types.ObjectId;
@@ -19,21 +24,26 @@ interface IImage extends Document {
   url: string;
   fileReference: string;
   data: {
-    tags: string[];
-    colors: IColor[];
+    title: string;
+    notes?: BulletNote[];
+    tags?: string[];
+    colors?: IColor[];
   };
   createdAt: Date;
   updatedAt: Date;
 }
 
+export type CreateIImage = { url: string; data: IImage["data"] };
+
 const imageSchema = new Schema<IImage>(
   {
-    _id: Schema.Types.ObjectId,
     userId: Schema.Types.ObjectId,
-    type: 'image',
+    type: {type: String, default: 'image'},
     url: String,
     fileReference: String,
     data: {
+      title: String,
+      notes: [{text: String}],
       tags: [String],
       colors: [
         {

@@ -19,14 +19,14 @@ uninstall machine
 start machine
 - podman machine init
 - podman pull mongo
-- podman run --name mymind_mdb -d -p 27017:27017 -v ./ docker.io/library/mongo:latest
+- podman run --name myalomou_container -d -p 27017:27017 -v ./ docker.io/library/mongo:latest
   
 db 
-- podman exec -it mymind_mdb bash // enter machine bash
+- podman exec -it myalomou_container bash // enter machine bash
 - 
 
 run pod
-- podman run --name mymind_mdb -d -p 27017:27017 -v ./mongodb_docker docker.io/library/mongo:latest 
+- podman run --name myalomou_container -d -p 27017:27017 -v ./mongodb_docker docker.io/library/mongo:latest 
 
 
 copy data from pod
@@ -38,14 +38,24 @@ export data from db
 load data to db
 - mongorestore --db databasename --verbose \path\dump\<dumpfolder>
 ---
+### mongodb
+
+run to enter mongo shell
+- mongosh
+
 ### todos
 
 - [x] make node.js typescript express server
 - [x] use ai to identify 'description' for images
 - [x] use ai to identify 'tags' for images
 - [x] get color pallete present in image
-- [ ] try to figure out data structure + db implementation
-- [ ] type of content
-  - [ ] images / video  
+- [x] try to figure out data structure + db implementation
+- [x] type of content
+  - [x] images / video  
     - [ ] add other image-specific properties (e.g., image resolution, aspect ratio, etc.)
+- [ ] user creation
+- [ ] image creation 
+  - [ ] handle image upload/storing to filepath
+- [ ] logger for route calls
+- [ ] improve db storage + moving (abandon podman?)
 - [ ] ?

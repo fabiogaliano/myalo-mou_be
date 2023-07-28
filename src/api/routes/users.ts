@@ -1,6 +1,7 @@
 import createUserInteractor from '@/interactors/createUserInteractor';
 import { Router } from 'express';
 import createUserPersistence from '@/persistence/createUserPersistence';
+import userModel from '@/persistence/models/user.model';
 
 const route = Router();
 
@@ -19,9 +20,35 @@ export default (app: Router) => {
     res.json(newUser);
   });
 
-  // Get User
-  route.get('/users/:userId', (req, res) => {
+  // Get Users
+  route.get('/', async (req, res) => {
     // Handle user retrieval logic
+    let users;
+    try {
+      users = (await userModel.find()).map((model) => model.toJSON());
+    } catch (error) {
+      console.log(error)
+    }
+    res.json(users)
+  });
+
+  // Get User
+  route.get('/users/:userId', async (req, res) => {
+    const { id } = <GetUserBody>req.body;
+
+    let user;
+    try {
+      user = await userModel.findById(id)
+      if (!user) {
+        res.statusCode = 404
+        res.send()
+      }
+      res.json(user?.toJSON())
+    } catch (error) {
+      console.log(error)
+    } 
+
+    res.send('working')
   });
 
   // Update User
@@ -38,4 +65,8 @@ export default (app: Router) => {
 interface CreateUserBody {
   email: string;
   password: string;
+}
+
+interface GetUserBody {
+  id: string;
 }
